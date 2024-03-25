@@ -3,11 +3,11 @@ import { LogDescription } from 'ethers/lib/utils';
 import { abi } from './abis/Token';
 
 // Connect to a locally run ethereum node (e.g. run `anvil` for testing)
-const RPC_URL = 'http://127.0.0.1:8545';
+// const RPC_URL = 'http://127.0.0.1:8545';
 
 // Connect to 3rd party provider
-// import 'dotenv/config'
-// const RPC_URL = process.env.RPC_URL_SEPOLIA;
+import 'dotenv/config'
+const RPC_URL = process.env.RPC_URL_ETHEREUM;
 
 async function getTokenTransfers(addressList: string[], tokenContractAddress: string, years: number, fromBlock?: number, toBlock?: number): Promise<any[]> {
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
@@ -45,12 +45,14 @@ async function getTokenTransfers(addressList: string[], tokenContractAddress: st
 ///////////// Example usage /////////////
 
 // mandatory params
-const addressList: string[] = [];
-const tokenContractAddress: string = "";
+const binance = "0x28C6c06298d514Db089934071355E5743bf21d60"
+const coinbase = "0xA9D1e08C7793af67e9d92fe308d5697FB81d3E43"
+const addressList: string[] = [binance, coinbase];
+const tokenContractAddress: string = "0x3506424F91fD33084466F402d5D97f05F8e3b4AF"; // chiliz mainnet
 const years = 1;
 // optional params
-const fromBlock = 0;
-const toBlock = 0;
+const fromBlock = 	19510910;
+const toBlock = 19510911;
 
 getTokenTransfers(addressList, tokenContractAddress, years, fromBlock, toBlock)
     .then(transfers => {
