@@ -3,11 +3,11 @@ import { LogDescription } from 'ethers/lib/utils';
 import { abi } from './abis/Token';
 
 // Connect to a locally run ethereum node (e.g. run `anvil` for testing)
-// const RPC_URL = 'http://127.0.0.1:8545';
+const RPC_URL = 'http://127.0.0.1:8545';
 
 // Connect to 3rd party provider
-import 'dotenv/config'
-const RPC_URL = process.env.RPC_URL_ETHEREUM;
+// import 'dotenv/config'
+// const RPC_URL = process.env.RPC_URL_ETHEREUM;
 
 async function getTokenTransfers(addressList: string[], tokenContractAddress: string, years: number, fromBlock?: number, toBlock?: number): Promise<any[]> {
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
